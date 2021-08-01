@@ -55,9 +55,17 @@ namespace EnergyCompanyConsoleApplication
             {
                 if (_input == 6)
                 {
-                    Console.WriteLine("Exiting..");
-                    exit = true;
-                    System.Environment.Exit(-1);
+                    Console.WriteLine($"Press 1 to Confirm and Exit");
+                    if (int.TryParse(Console.ReadLine(), out int _option) && _option == 1)
+                    {
+                        Console.WriteLine("Exiting..");
+                        exit = true;
+                        System.Environment.Exit(-1);
+                    }
+                    else
+                    {
+                        exit = false;
+                    }
                 }
                 else
                 {

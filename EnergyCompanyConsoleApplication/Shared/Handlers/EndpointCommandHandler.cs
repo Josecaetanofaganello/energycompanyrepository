@@ -80,7 +80,7 @@ namespace EnergyCompanyConsoleApplication.Shared.Handlers
                     }
                     else
                     {
-                        return new CommandResult(false, $" {_endpoint.SerialNumber} Can't be inserted", new { persistence = "no" });
+                        return new CommandResult(false, $" {_endpoint.SerialNumber} Can't be inserted, values not found or invalid", new { persistence = "no" });
                     }
                    
                 }
