@@ -3,10 +3,7 @@ using EnergyCompanyConsoleApplication.Domain.Entities;
 using EnergyCompanyConsoleApplication.Domain.Enums;
 using EnergyCompanyConsoleApplication.Domain.Repositories;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EnergyCompanyConsoleApplication.Shared.Handlers
 {
@@ -82,7 +79,6 @@ namespace EnergyCompanyConsoleApplication.Shared.Handlers
                     {
                         return new CommandResult(false, $" {_endpoint.SerialNumber} Can't be inserted, values not found or invalid", new { persistence = "no" });
                     }
-                   
                 }
             }
 
