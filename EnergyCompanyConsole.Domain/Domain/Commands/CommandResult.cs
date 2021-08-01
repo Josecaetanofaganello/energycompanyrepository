@@ -1,7 +1,4 @@
-﻿using EnergyCompanyConsoleApplication.Shared.Handlers;
-using System;
-
-namespace EnergyCompanyConsoleApplication.Domain.Commands
+﻿namespace EnergyCompanyConsoleApplication.Domain.Commands
 {
     public class CommandResult : ICommandResult
     {

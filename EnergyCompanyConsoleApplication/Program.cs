@@ -1,5 +1,4 @@
 ﻿using EnergyCompanyConsoleApplication.Domain.Commands;
-using EnergyCompanyConsoleApplication.Domain.Entities;
 using EnergyCompanyConsoleApplication.Domain.Enums;
 using EnergyCompanyConsoleApplication.Domain.Repositories;
 using EnergyCompanyConsoleApplication.Infrastructure.Cache;
