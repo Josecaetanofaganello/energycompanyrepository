@@ -32,7 +32,7 @@ namespace EnergyCompanyConsoleApplication.Shared.Handlers
                 Console.WriteLine("Insert SerialNumber:");
                 _endpoint.SerialNumber = Console.ReadLine();
 
-               var findEndpoint = _cache.Find(_endpoint.SerialNumber);
+                var findEndpoint = _cache.Find(_endpoint.SerialNumber);
                 if (findEndpoint != null)
                 {
                     return new CommandResult(false, $" {_endpoint.SerialNumber} Already exists!", new { persistence = "no" });
@@ -55,6 +55,9 @@ namespace EnergyCompanyConsoleApplication.Shared.Handlers
                         Console.WriteLine("Insert a valid number");
                     }
 
+                    Console.WriteLine("Insert Firmware Version:");
+                    _endpoint.FirmwareVersion = Console.ReadLine();
+
                     Console.Clear();
                     Console.WriteLine("Insert Switch State");
 
@@ -70,9 +73,16 @@ namespace EnergyCompanyConsoleApplication.Shared.Handlers
                     {
                         Console.WriteLine("Insert a valid number");
                     }
-
-                    _cache.insert(new Endpoint { FirmwareVersion = _endpoint.FirmwareVersion, MeterModelId = _endpoint.MeterModelId, MeterNumber = _endpoint.MeterNumber, SerialNumber = _endpoint.SerialNumber, SwitchState = _endpoint.SwitchState });
-                    return new CommandResult(true, $" {_endpoint.SerialNumber} Successfully inserted", new { persistence = "ok" });
+                    if (_endpoint.Valid())
+                    {
+                        _cache.insert(new Endpoint { FirmwareVersion = _endpoint.FirmwareVersion, MeterModelId = _endpoint.MeterModelId, MeterNumber = _endpoint.MeterNumber, SerialNumber = _endpoint.SerialNumber, SwitchState = _endpoint.SwitchState });
+                        return new CommandResult(true, $" {_endpoint.SerialNumber} Successfully inserted", new { persistence = "ok" });
+                    }
+                    else
+                    {
+                        return new CommandResult(false, $" {_endpoint.SerialNumber} Can't be inserted", new { persistence = "no" });
+                    }
+                   
                 }
             }
 
@@ -81,15 +91,16 @@ namespace EnergyCompanyConsoleApplication.Shared.Handlers
                 Console.Clear();
                 Console.WriteLine("Enter an Endpoint Serial Number:");
                 var findEndpoint = _cache.Find(Console.ReadLine());
-                if(findEndpoint != null)
+                if (findEndpoint != null)
                 {
+                    Console.WriteLine("Enter a valid number state:");
                     foreach (var i in Enum.GetValues(typeof(ESwitchState)))
                     {
                         Console.WriteLine($"{((int)i)} -  {i}");
                     }
                     if (int.TryParse(Console.ReadLine(), out int switchState))
                     {
-                        _endpoint.SwitchState = (ESwitchState)switchState;
+                        findEndpoint.SwitchState = (ESwitchState)switchState;
                     }
                     else
                     {
@@ -105,13 +116,31 @@ namespace EnergyCompanyConsoleApplication.Shared.Handlers
 
             if (ECommandType.Delete == _typeCommand)
             {
-
-                return new CommandResult(true, $" {_endpoint.SerialNumber} Successfully edited", new { persistence = "ok" });
+                Console.Clear();
+                Console.WriteLine("Enter an Endpoint Serial Number:");
+                var item = _cache.Find(Console.ReadLine());
+                if (item != null)
+                {
+                    Console.WriteLine($"Press 1 to Delete Endpoint Serial Number:{item.SerialNumber}");
+                    if (int.TryParse(Console.ReadLine(), out int _option) && _option == 1)
+                    {
+                        _cache.delete(item);
+                        return new CommandResult(true, $" {_endpoint.SerialNumber} Successfully Deleted", new { persistence = "no" });
+                    }
+                    else
+                    {
+                        return new CommandResult(false, $"", new { persistence = "no" });
+                    }
+                }
+                else
+                {
+                    return new CommandResult(true, $" {_endpoint.SerialNumber} not found", new { persistence = "ok" });
+                }
             }
             if (ECommandType.List == _typeCommand)
             {
                 Console.Clear();
-                foreach(var item in _cache.ListAll())
+                foreach (var item in _cache.ListAll())
                 {
                     Console.WriteLine($"Serial Number    :{item.SerialNumber}");
                     Console.WriteLine($"Meter Model Id   :{item.MeterModelId}");
@@ -128,12 +157,27 @@ namespace EnergyCompanyConsoleApplication.Shared.Handlers
 
             if (ECommandType.Find == _typeCommand)
             {
-
-                return new CommandResult(true, $" {_endpoint.SerialNumber} Successfully edited", new { persistence = "ok" });
+                Console.Clear();
+                Console.WriteLine("Enter an Endpoint Serial Number:");
+                var item = _cache.Find(Console.ReadLine());
+                if (item != null)
+                {
+                    Console.WriteLine($"Serial Number    :{item.SerialNumber}");
+                    Console.WriteLine($"Meter Model Id   :{item.MeterModelId}");
+                    Console.WriteLine($"Firmware Version :{item.FirmwareVersion}");
+                    Console.WriteLine($"Meter Number     :{item.MeterNumber}");
+                    Console.WriteLine($"Switch State     :{item.SwitchState}");
+                    Console.WriteLine("_________________________________________");
+                    return new CommandResult(true, "", new { persistence = "no" });
+                }
+                else
+                {
+                    return new CommandResult(false, $" {_endpoint.SerialNumber} Not found !", new { persistence = "no" });
+                }
             }
             else
             {
-                return new CommandResult(true, $" {_endpoint.SerialNumber} Successfully inserted", new { persistence = "ok" });
+                return new CommandResult(true, $" {_endpoint.SerialNumber} Command Unknown", new { persistence = "ok" });
             }
         }
     }

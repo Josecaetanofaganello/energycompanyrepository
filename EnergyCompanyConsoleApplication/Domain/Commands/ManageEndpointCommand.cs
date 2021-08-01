@@ -1,17 +1,10 @@
 ﻿using EnergyCompanyConsoleApplication.Domain.Enums;
+using System;
 
 namespace EnergyCompanyConsoleApplication.Domain.Commands
 {
     public class ManageEndpointCommand : ICommand
     {
-        //public ManageEndpointCommand(string serialNumber, EMeterModel meterModelid, int meterNumber, string firmwareVersion, ESwitchState switchState)
-        //{
-        //    SerialNumber = serialNumber;
-        //    MeterModelId = meterModelid;
-        //    MeterNumber = meterNumber;
-        //    FirmwareVersion = firmwareVersion;
-        //    SwitchState = switchState;
-        //}
         public string SerialNumber { get; set; }
         public EMeterModel MeterModelId { get; set; }
         public int MeterNumber { get; set; }
@@ -21,7 +14,21 @@ namespace EnergyCompanyConsoleApplication.Domain.Commands
         public bool Valid()
         {
             //check validations
-            return true;
+            if (string.IsNullOrEmpty(SerialNumber))
+            {
+                return false;
+            }
+            if (!Enum.IsDefined(typeof(EMeterModel), MeterModelId)){
+                return false;
+            }
+            if (!Enum.IsDefined(typeof(ESwitchState), SwitchState))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }

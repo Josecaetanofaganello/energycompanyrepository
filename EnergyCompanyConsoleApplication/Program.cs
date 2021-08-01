@@ -46,6 +46,7 @@ namespace EnergyCompanyConsoleApplication
                 }
                 else
                 {
+                    Console.Clear();
                     Console.WriteLine("Invalid Option, please choose a number between 1 and 6");
                 }
             }
@@ -69,7 +70,7 @@ namespace EnergyCompanyConsoleApplication
                 ManageEndpointCommand cmd = new ManageEndpointCommand();
                 var command = new EndpointCommandHandler(cmd, _cache, CommandType);
                 var result = command.Handle(cmd);
-                Console.Clear();
+
                 Console.WriteLine(result.Message + "\r\n");
             }
         }
