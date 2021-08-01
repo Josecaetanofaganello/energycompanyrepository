@@ -2,16 +2,16 @@
 
 namespace EnergyCompanyConsoleApplication.Domain.Commands
 {
-    public class InsertEndpointCommand : ICommand
+    public class ManageEndpointCommand : ICommand
     {
-        public InsertEndpointCommand(string serialNumber, EMeterModel meterModelid, int meterNumber, string firmwareVersion, ESwitchState switchState)
-        {
-            SerialNumber = serialNumber;
-            MeterModelId = meterModelid;
-            MeterNumber = meterNumber;
-            FirmwareVersion = firmwareVersion;
-            SwitchState = switchState;
-        }
+        //public ManageEndpointCommand(string serialNumber, EMeterModel meterModelid, int meterNumber, string firmwareVersion, ESwitchState switchState)
+        //{
+        //    SerialNumber = serialNumber;
+        //    MeterModelId = meterModelid;
+        //    MeterNumber = meterNumber;
+        //    FirmwareVersion = firmwareVersion;
+        //    SwitchState = switchState;
+        //}
         public string SerialNumber { get; set; }
         public EMeterModel MeterModelId { get; set; }
         public int MeterNumber { get; set; }
