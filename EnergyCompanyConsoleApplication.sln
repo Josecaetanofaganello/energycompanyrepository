@@ -5,11 +5,11 @@ VisualStudioVersion = 16.0.31424.327
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnergyCompanyConsole.Application", "EnergyCompanyConsoleApplication\EnergyCompanyConsole.Application.csproj", "{FDB85F03-828E-4487-BDEC-B169BC9C7CB8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnergyCompanyConsole.Domain", "EnergyCompanyConsole.Domain\EnergyCompanyConsole.Domain.csproj", "{9333020A-76BB-4556-AB62-77D05ED69E10}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnergyCompanyConsole.Domain", "EnergyCompanyConsole.Domain\EnergyCompanyConsole.Domain.csproj", "{9333020A-76BB-4556-AB62-77D05ED69E10}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnergyCompanyConsole.Infrastructure", "EnergyCompanyConsole.Infrastructure\EnergyCompanyConsole.Infrastructure.csproj", "{17B87B99-68DD-4E24-944B-6611A3D93A15}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnergyCompanyConsole.Infrastructure", "EnergyCompanyConsole.Infrastructure\EnergyCompanyConsole.Infrastructure.csproj", "{17B87B99-68DD-4E24-944B-6611A3D93A15}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnergyCompanyConsole.Tests", "EnergyCompanyConsole.Tests\EnergyCompanyConsole.Tests.csproj", "{EA5BE8E2-C0CE-4665-8B39-7D12F9CFF6B1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnergyCompanyConsole.Test", "EnergyCompanyConsole.Test\EnergyCompanyConsole.Test.csproj", "{DA1242F3-5AC9-49CC-820B-DE95AD6CCD9D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{17B87B99-68DD-4E24-944B-6611A3D93A15}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{17B87B99-68DD-4E24-944B-6611A3D93A15}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{17B87B99-68DD-4E24-944B-6611A3D93A15}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EA5BE8E2-C0CE-4665-8B39-7D12F9CFF6B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EA5BE8E2-C0CE-4665-8B39-7D12F9CFF6B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EA5BE8E2-C0CE-4665-8B39-7D12F9CFF6B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EA5BE8E2-C0CE-4665-8B39-7D12F9CFF6B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA1242F3-5AC9-49CC-820B-DE95AD6CCD9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA1242F3-5AC9-49CC-820B-DE95AD6CCD9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA1242F3-5AC9-49CC-820B-DE95AD6CCD9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA1242F3-5AC9-49CC-820B-DE95AD6CCD9D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

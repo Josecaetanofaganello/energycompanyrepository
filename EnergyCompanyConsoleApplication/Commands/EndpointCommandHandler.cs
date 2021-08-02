@@ -173,7 +173,7 @@ namespace EnergyCompanyConsoleApplication.Shared.Handlers
             }
             else
             {
-                return new CommandResult(true, $" {_endpoint.SerialNumber} Command Unknown", new { persistence = "ok" });
+                return new CommandResult(false, $" {_endpoint.SerialNumber} Command Unknown", new { persistence = "ok" });
             }
         }
     }
