@@ -10,11 +10,11 @@ namespace EnergyCompanyConsoleApplication.Shared.Handlers
     public class EndpointCommandHandler : ICommandHandler<ManageEndpointCommand>
     {
         private readonly ManageEndpointCommand _endpoint;
-        private readonly IEndpointCacheRepository _cache;
+        private readonly IEndpointRepository _cache;
         private readonly ECommandType _typeCommand;
 
 
-        public EndpointCommandHandler(ManageEndpointCommand endPoint, IEndpointCacheRepository cache, ECommandType typeCommand)
+        public EndpointCommandHandler(ManageEndpointCommand endPoint, IEndpointRepository cache, ECommandType typeCommand)
         {
             _endpoint = endPoint;
             _cache = cache;
@@ -56,6 +56,7 @@ namespace EnergyCompanyConsoleApplication.Shared.Handlers
                         Console.WriteLine("Insert a valid number");
                     }
 
+                    Console.Clear();
                     Console.WriteLine("Insert Firmware Version:");
                     _endpoint.FirmwareVersion = Console.ReadLine();
 
@@ -76,7 +77,7 @@ namespace EnergyCompanyConsoleApplication.Shared.Handlers
                     }
                     if (_endpoint.Valid())
                     {
-                        _cache.insert(new Endpoint { FirmwareVersion = _endpoint.FirmwareVersion, MeterModelId = _endpoint.MeterModelId, MeterNumber = _endpoint.MeterNumber, SerialNumber = _endpoint.SerialNumber, SwitchState = _endpoint.SwitchState });
+                        _cache.Insert(new Endpoint(_endpoint.SerialNumber,_endpoint.MeterModelId,_endpoint.MeterNumber, _endpoint.FirmwareVersion, _endpoint.SwitchState));
                         return new CommandResult(true, $" {_endpoint.SerialNumber} Successfully inserted", new { persistence = "ok" });
                     }
                     else
@@ -93,6 +94,15 @@ namespace EnergyCompanyConsoleApplication.Shared.Handlers
                 var findEndpoint = _cache.Find(Console.ReadLine());
                 if (findEndpoint != null)
                 {
+                    _endpoint.FirmwareVersion = findEndpoint.FirmwareVersion;
+                    _endpoint.SerialNumber = findEndpoint.SerialNumber;
+                    _endpoint.SwitchState = findEndpoint.SwitchState;
+                    _endpoint.MeterModelId = findEndpoint.MeterModelId;
+                    _endpoint.MeterNumber = findEndpoint.MeterNumber;
+                }
+
+                if (_endpoint.Valid())
+                {
                     Console.WriteLine("Enter a valid number state:");
                     foreach (var i in Enum.GetValues(typeof(ESwitchState)))
                     {
@@ -100,7 +110,7 @@ namespace EnergyCompanyConsoleApplication.Shared.Handlers
                     }
                     if (int.TryParse(Console.ReadLine(), out int switchState))
                     {
-                        findEndpoint.SwitchState = (ESwitchState)switchState;
+                        findEndpoint.ChangeState((ESwitchState)switchState);
                     }
                     else
                     {
@@ -124,7 +134,7 @@ namespace EnergyCompanyConsoleApplication.Shared.Handlers
                     Console.WriteLine($"Press 1 to Delete Endpoint Serial Number:{item.SerialNumber}");
                     if (int.TryParse(Console.ReadLine(), out int _option) && _option == 1)
                     {
-                        _cache.delete(item);
+                        _cache.Delete(item);
                         return new CommandResult(true, $" {_endpoint.SerialNumber} Successfully Deleted", new { persistence = "no" });
                     }
                     else

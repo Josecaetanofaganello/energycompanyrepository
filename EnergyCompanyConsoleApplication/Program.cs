@@ -13,7 +13,7 @@ namespace EnergyCompanyConsoleApplication
         public static void Main(string[] args)
         {
             bool exit = false;
-            IEndpointCacheRepository _cache = new EndpointCacheRepository();
+            IEndpointRepository _cache = new EndpointCacheRepository();
 
             while (!exit)
             {

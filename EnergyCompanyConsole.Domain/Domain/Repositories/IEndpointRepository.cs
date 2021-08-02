@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace EnergyCompanyConsoleApplication.Domain.Repositories
 {
-    public interface IEndpointCacheRepository
+    public interface IEndpointRepository
     {
-        bool insert(Endpoint endpoint);
-        bool edit(Endpoint endpoint);
-        bool delete(Endpoint endpoint);
+        bool Insert(Endpoint endpoint);
+        bool Edit(Endpoint endpoint);
+        bool Delete(Endpoint endpoint);
         IEnumerable<Endpoint> ListAll();
         Endpoint Find(string SerialNumber);
     }

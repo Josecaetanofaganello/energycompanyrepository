@@ -11,7 +11,7 @@ namespace EnergyCompanyConsole.Test
         [TestMethod]
         public void ShouldValidateWhenMeterModelIdIsInvalid()
         {
-            IEndpointCacheRepository _cache = new FakeEndpointCacheRepository();
+            IEndpointRepository _cache = new FakeEndPointRepository();
             ManageEndpointCommand cmd = new ManageEndpointCommand();
             cmd.FirmwareVersion = "1.0.0";
             cmd.MeterNumber = 1;

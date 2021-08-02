@@ -5,22 +5,22 @@ using System.Collections.Generic;
 
 namespace EnergyCompanyConsoleApplication.Infrastructure.Cache
 {
-    public class EndpointCacheRepository : IEndpointCacheRepository
+    public class EndpointCacheRepository : IEndpointRepository
     {
         private static readonly ConcurrentDictionary<string,Endpoint> _endpoints;
 
         static EndpointCacheRepository() => _endpoints = new ConcurrentDictionary<string, Endpoint>();
 
-        public bool insert(Endpoint endpoint)
+        public bool Insert(Endpoint endpoint)
         {
             return _endpoints.TryAdd(endpoint.SerialNumber, endpoint);
         }
-        public bool delete(Endpoint endpoint)
+        public bool Delete(Endpoint endpoint)
         {
             return _endpoints.TryRemove(endpoint.SerialNumber, out _);
         }
 
-        public bool edit(Endpoint endpoint)
+        public bool Edit(Endpoint endpoint)
         {
             //find endpoint
             bool findResult = _endpoints.TryGetValue(endpoint.SerialNumber, out var _endpoint);

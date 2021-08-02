@@ -6,19 +6,19 @@ using System.Collections.Generic;
 
 namespace EnergyCompanyConsole.Test
 {
-    public class FakeEndpointCacheRepository : IEndpointCacheRepository
+    public class FakeEndPointRepository : IEndpointRepository
     {
         private static readonly ConcurrentDictionary<string, Endpoint> _fakeEndpoints;
 
-        static FakeEndpointCacheRepository()
+        static FakeEndPointRepository()
         {
             _fakeEndpoints = new ConcurrentDictionary<string, Endpoint>();
 
-            Endpoint end0 = new Endpoint { FirmwareVersion = "1.0.0", MeterModelId = (EMeterModel)16, MeterNumber = 1, SerialNumber = "00000000001", SwitchState = (ESwitchState)1 };
-            Endpoint end1 = new Endpoint { FirmwareVersion = "1.0.0", MeterModelId = (EMeterModel)17, MeterNumber = 2, SerialNumber = "00000000002", SwitchState = (ESwitchState)2 };
-            Endpoint end2 = new Endpoint { FirmwareVersion = "1.0.2", MeterModelId = (EMeterModel)18, MeterNumber = 3, SerialNumber = "00000000003", SwitchState = (ESwitchState)0 };
-            Endpoint end3 = new Endpoint { FirmwareVersion = "1.0.3", MeterModelId = (EMeterModel)19, MeterNumber = 4, SerialNumber = "00000000004", SwitchState = (ESwitchState)2 };
-            Endpoint end4 = new Endpoint { FirmwareVersion = "1.0.1", MeterModelId = (EMeterModel)17, MeterNumber = 5, SerialNumber = "00000000005", SwitchState = (ESwitchState)2 };
+            Endpoint end0 = new Endpoint("00000000001", (EMeterModel)16, 1, "1.0.0", (ESwitchState)1);
+            Endpoint end1 = new Endpoint("00000000002", (EMeterModel)17, 1, "1.1.0", (ESwitchState)2);
+            Endpoint end2 = new Endpoint("00000000003", (EMeterModel)18, 1, "1.0.0", (ESwitchState)1);
+            Endpoint end3 = new Endpoint("00000000004", (EMeterModel)19, 1, "1.3.0", (ESwitchState)1);
+            Endpoint end4 = new Endpoint("00000000005", (EMeterModel)16, 1, "1.2.0", (ESwitchState)0);
             _fakeEndpoints.TryAdd(end0.SerialNumber,end0);
             _fakeEndpoints.TryAdd(end1.SerialNumber,end1);
             _fakeEndpoints.TryAdd(end2.SerialNumber,end2);
@@ -26,16 +26,16 @@ namespace EnergyCompanyConsole.Test
             _fakeEndpoints.TryAdd(end4.SerialNumber,end4);
         }
 
-        public bool insert(Endpoint endpoint)
+        public bool Insert(Endpoint endpoint)
         {
             return _fakeEndpoints.TryAdd(endpoint.SerialNumber, endpoint);
         }
-        public bool delete(Endpoint endpoint)
+        public bool Delete(Endpoint endpoint)
         {
             return _fakeEndpoints.TryRemove(endpoint.SerialNumber, out _);
         }
 
-        public bool edit(Endpoint endpoint)
+        public bool Edit(Endpoint endpoint)
         {
             //find endpoint
             bool findResult = _fakeEndpoints.TryGetValue(endpoint.SerialNumber, out var _endpoint);
