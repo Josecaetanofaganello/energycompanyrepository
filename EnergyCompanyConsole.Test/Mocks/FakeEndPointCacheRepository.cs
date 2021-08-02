@@ -20,7 +20,7 @@ namespace EnergyCompanyConsole.Test
             Endpoint end3 = new Endpoint { FirmwareVersion = "1.0.3", MeterModelId = (EMeterModel)19, MeterNumber = 4, SerialNumber = "00000000004", SwitchState = (ESwitchState)2 };
             Endpoint end4 = new Endpoint { FirmwareVersion = "1.0.1", MeterModelId = (EMeterModel)17, MeterNumber = 5, SerialNumber = "00000000005", SwitchState = (ESwitchState)2 };
             _fakeEndpoints.TryAdd(end0.SerialNumber,end0);
-            _fakeEndpoints.TryAdd(end1.SerialNumber, end1);
+            _fakeEndpoints.TryAdd(end1.SerialNumber,end1);
             _fakeEndpoints.TryAdd(end2.SerialNumber,end2);
             _fakeEndpoints.TryAdd(end3.SerialNumber,end3);
             _fakeEndpoints.TryAdd(end4.SerialNumber,end4);

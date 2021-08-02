@@ -29,6 +29,10 @@ namespace EnergyCompanyConsoleApplication.Shared.Handlers
                 Console.WriteLine("Insert SerialNumber:");
                 _endpoint.SerialNumber = Console.ReadLine();
 
+                Console.Clear();
+                Console.WriteLine("Insert MeterNumber:");
+                _endpoint.MeterNumber = (int.TryParse(Console.ReadLine(), out int nrmeter) ? nrmeter : 0);
+
                 var findEndpoint = _cache.Find(_endpoint.SerialNumber);
                 if (findEndpoint != null)
                 {
